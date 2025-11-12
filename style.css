@@ -522,3 +522,36 @@ header {
     .cta-title { font-size: 2rem; }
     .stat-number { font-size: 2.8rem; }
 }
+
+/* Footer */
+.site-footer {
+    background-color: var(--navy);
+    color: var(--white);
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.site-footer .container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.site-footer p {
+    font-size: 14px;
+    margin: 0;
+}
+
+.site-footer a {
+    color: var(--blue);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.site-footer a:hover {
+    color: var(--light-gray);
+    text-decoration: underline;
+}
