@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import type { ReactNode } from "react";
 import { trackEvent } from "@/lib/tracking";
 
 interface Props {
   sectionId: string;
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 

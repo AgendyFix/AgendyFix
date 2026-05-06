@@ -10,7 +10,7 @@ import { buildWaUrl, trackWaClick } from "@/lib/tracking";
 const NAV_LINKS = [
   { label: "Funcionalidades", href: "#features" },
   { label: "Como funciona", href: "#how-it-works" },
-  { label: "Blog", href: "https://app.agendyfix.com/blog" },
+  { label: "Blog", href: "/blog" },
 ];
 
 const WA_MSG = "Hola, me interesa conocer mas sobre AgendyFix para mi academia.";
@@ -79,6 +79,7 @@ export function LandingNavbar() {
           className="md:hidden p-2 text-foreground"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Menu"
+          aria-expanded={mobileOpen}
         >
           {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>

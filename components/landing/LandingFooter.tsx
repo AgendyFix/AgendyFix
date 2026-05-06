@@ -1,7 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { MessageCircle } from "lucide-react";
-import { buildWaUrl } from "@/lib/tracking";
+import { buildWaUrl, trackWaClick } from "@/lib/tracking";
 
 const WA_MSG = "Hola, quiero saber mas sobre AgendyFix.";
 
@@ -11,8 +13,8 @@ const LINKS = {
     { label: "Como funciona", href: "#how-it-works" },
   ],
   recursos: [
-    { label: "Blog", href: "https://app.agendyfix.com/blog" },
-    { label: "Iniciar sesión", href: "https://app.agendyfix.com" },
+    { label: "Blog", href: "/blog" },
+    { label: "Iniciar sesión", href: "https://app.agendyfix.com/login" },
     { label: "Aviso de privacidad", href: "/privacidad" },
   ],
 };
@@ -43,6 +45,7 @@ export function LandingFooter() {
               href={buildWaUrl(WA_MSG)}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWaClick("footer")}
               className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
             >
               <MessageCircle className="h-4 w-4" />

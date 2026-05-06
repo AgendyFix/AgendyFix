@@ -79,10 +79,11 @@ export function SocialProofSection() {
               transition={{ duration: 0.4, delay: i * 0.1 }}
               className="rounded-2xl border border-border bg-card p-6"
             >
-              <div className="flex gap-1 mb-4">
+              <div className="flex gap-1 mb-4" role="img" aria-label="5 estrellas">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <svg
                     key={star}
+                    aria-hidden="true"
                     className="h-4 w-4 text-primary fill-primary"
                     viewBox="0 0 20 20"
                   >
