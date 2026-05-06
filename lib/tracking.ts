@@ -3,7 +3,7 @@ import posthog from "posthog-js";
 const isDev = process.env.NODE_ENV === "development";
 
 function phReady(): boolean {
-  return typeof window !== "undefined" && posthog.__loaded === true;
+  return typeof window !== "undefined" && Boolean(posthog.config);
 }
 
 export function trackEvent(type: string, metadata?: Record<string, unknown>) {
