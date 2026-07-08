@@ -28,8 +28,8 @@ export function LandingFooter() {
           <div className="md:col-span-2">
             <div className="flex items-center gap-2.5 mb-4">
               <Image
-                src="/logo.png"
-                alt="AgendyFix"
+                src="/logo-nav.png"
+                alt=""
                 width={28}
                 height={28}
                 className="h-7 w-7 object-contain"
@@ -55,7 +55,7 @@ export function LandingFooter() {
 
           {/* Producto */}
           <div>
-            <h4 className="text-sm font-semibold text-foreground mb-3">Producto</h4>
+            <h3 className="text-sm font-semibold text-foreground mb-3">Producto</h3>
             <ul className="space-y-2">
               {LINKS.producto.map((link) => (
                 <li key={link.href}>
@@ -72,7 +72,7 @@ export function LandingFooter() {
 
           {/* Recursos */}
           <div>
-            <h4 className="text-sm font-semibold text-foreground mb-3">Recursos</h4>
+            <h3 className="text-sm font-semibold text-foreground mb-3">Recursos</h3>
             <ul className="space-y-2">
               {LINKS.recursos.map((link) => (
                 <li key={link.href}>

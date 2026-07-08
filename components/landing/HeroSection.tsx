@@ -35,36 +35,24 @@ export function HeroSection() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Copy */}
             <div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
+              {/* Sin animación de entrada: este texto es el LCP y debe pintarse
+                  antes de que hidrate React, no después. */}
+              <div>
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs font-medium text-white/90 mb-6 backdrop-blur-sm">
                   Software para academias y escuelas
                 </span>
-              </motion.div>
+              </div>
 
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-5"
-              >
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-5">
                 Tu academia merece un sistema que trabaje{" "}
                 <span className="text-primary">por ti</span>
-              </motion.h1>
+              </h1>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-white/80 text-base md:text-lg leading-relaxed mb-8 max-w-lg"
-              >
+              <p className="text-white/80 text-base md:text-lg leading-relaxed mb-8 max-w-lg">
                 Deja de cobrar por WhatsApp, apuntar alumnos en hojas de calculo y
                 perder inscripciones. AgendyFix centraliza todo en un solo lugar
                 para que te enfoques en ensenar.
-              </motion.p>
+              </p>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}

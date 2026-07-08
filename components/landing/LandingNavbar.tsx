@@ -41,8 +41,8 @@ export function LandingNavbar() {
       <div className="mx-auto max-w-6xl flex h-16 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2.5">
           <Image
-            src="/logo.png"
-            alt="AgendyFix"
+            src="/logo-nav.png"
+            alt=""
             width={32}
             height={32}
             className="h-8 w-8 object-contain"
