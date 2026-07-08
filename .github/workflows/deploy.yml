@@ -27,7 +27,8 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          NEXT_PUBLIC_POSTHOG_KEY: ${{ secrets.NEXT_PUBLIC_POSTHOG_KEY }}
+          # Token público de PostHog (solo escritura, viaja en el JS del sitio)
+          NEXT_PUBLIC_POSTHOG_KEY: phc_CCAaMMtaLqPk5Gnxpab5QQw6SR3X7H3WP3PHkCH8A62R
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
