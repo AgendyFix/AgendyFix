@@ -27,7 +27,7 @@ Estos conflictos no son errores humanos — son el resultado inevitable de manej
 
 ## Señal 3: Perdiste un alumno y no te diste cuenta a tiempo
 
-Un alumno dejó de venir hace 3 semanas y nadie se percató hasta que el padre llamó para pedir la baja. Si no tienes un sistema que te alerte cuando alguien lleva 2 clases sin asistir, estás perdiendo alumnos silenciosamente.
+Un alumno dejó de venir hace 3 semanas y nadie se percató hasta que el padre llamó para pedir la baja. Si la información de tus alumnos vive en libretas y memoria — quién es, en qué grupo está, cuándo pagó por última vez — nadie tiene la foto completa y los alumnos se van silenciosamente. Con un registro centralizado, una revisada rápida a tu lista te dice a quién hace falta darle seguimiento.
 
 **Dato**: El 60% de los alumnos que dejan una academia podrían haberse recuperado con un seguimiento oportuno dentro de la primera semana de inasistencia.
 
@@ -66,13 +66,13 @@ El punto de inflexión suele estar entre 20 y 30 alumnos. A partir de ahí, el t
 
 No todos los software son iguales. Para una academia necesitas:
 
-1. **Gestión de alumnos** — Registro, datos de contacto, disciplinas, estado de pago
-2. **Control de grupos y horarios** — Calendario visual, asignación de salones, detección de conflictos
-3. **Pagos y mensualidades** — Registro de cobros, historial, alertas de adeudo
-4. **Comunicación integrada** — Recordatorios por WhatsApp, avisos masivos
-5. **Reportes básicos** — Ingresos mensuales, asistencia, deserción
+1. **Gestión de alumnos** — Registro, datos de contacto, grupo asignado, estado de pago
+2. **Control de grupos y horarios** — Grupos con nivel, horario, instructor y mensualidad
+3. **Pagos y mensualidades** — Registro de cobros, historial, pagos vencidos generados solos
+4. **Comunicación integrada** — Recordatorios de pago automáticos por WhatsApp
+5. **Reportes básicos** — Ingresos del mes, alumnos activos, pendiente de cobrar
 
-Herramientas como AgendyFix están diseñadas específicamente para academias y cubren lo esencial de esta lista — alumnos, grupos y horarios, control de pagos y recordatorios por WhatsApp — en una sola plataforma.
+Herramientas como AgendyFix están diseñadas específicamente para academias, con estas funcionalidades integradas en una sola plataforma.
 
 ## Preguntas frecuentes
 
