@@ -30,14 +30,14 @@ export const metadata: Metadata = {
     locale: "es_MX",
     url: `${siteUrl}/blog`,
     siteName: "AgendyFix",
-    title: "Blog — Software para Academias y Escuelas | AgendyFix",
+    title: "Blog — Software para Academias | AgendyFix",
     description:
-      "Guías prácticas para academias y escuelas. Aprende a gestionar alumnos, inscripciones, pagos, clases grupales y comunicación con padres de familia.",
+      "Guías prácticas para academias. Aprende a gestionar alumnos, inscripciones, pagos, clases grupales y la comunicación con tus alumnos.",
     images: [{ url: `${siteUrl}/logo.png`, width: 512, height: 512, alt: "AgendyFix Blog" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog — Software para Academias y Escuelas | AgendyFix",
+    title: "Blog — Software para Academias | AgendyFix",
     description:
       "Guías prácticas para academias: gestión de alumnos, inscripciones, pagos y comunicación con WhatsApp.",
   },
@@ -52,7 +52,7 @@ export default function BlogPage() {
       {
         "@type": "Blog",
         name: "Blog de AgendyFix",
-        description: "Guías prácticas para academias y escuelas en Latinoamérica.",
+        description: "Guías prácticas para academias en México.",
         url: `${siteUrl}/blog`,
         publisher: { "@type": "Organization", name: "AgendyFix", url: siteUrl },
         inLanguage: "es-MX",

@@ -9,6 +9,7 @@ import "./globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "optional",
 });
 
 const siteUrl = "https://agendyfix.com";
@@ -16,7 +17,7 @@ const siteUrl = "https://agendyfix.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "AgendyFix — Software de gestión para academias y escuelas",
+    default: "AgendyFix — Software de gestión para academias",
     template: "%s | AgendyFix",
   },
   description:

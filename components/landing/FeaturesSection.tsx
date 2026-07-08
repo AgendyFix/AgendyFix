@@ -16,37 +16,37 @@ const FEATURES = [
     icon: Users,
     title: "Gestion de alumnos",
     description:
-      "Directorio completo con datos de contacto, historial de pagos, asistencia y documentos. Todo accesible en un click.",
+      "Directorio completo con datos de contacto, grupo asignado e historial de pagos de cada alumno. Todo accesible en un click.",
   },
   {
     icon: CreditCard,
     title: "Control de pagos",
     description:
-      "Registra mensualidades, genera estados de cuenta y visualiza adeudos. Recibe notificaciones de pagos vencidos automaticamente.",
+      "Visualiza al instante quien pago, quien esta vencido y cuanto se debe. Los pagos del mes se generan solos, sin que hagas nada.",
   },
   {
     icon: CalendarDays,
-    title: "Horarios y clases grupales",
+    title: "Grupos y horarios",
     description:
-      "Organiza horarios por disciplina, salon y maestro. Tus alumnos saben exactamente cuando y donde es su clase.",
+      "Organiza tus grupos con nombre, nivel, horario, instructor y mensualidad. Tu academia configurada en minutos.",
   },
   {
     icon: Bell,
     title: "Recordatorios por WhatsApp",
     description:
-      "Envia recordatorios de pago, clase y avisos importantes directo al WhatsApp de tus alumnos. Sin esfuerzo manual.",
+      "Recordatorio automatico 5 dias antes del vencimiento y aviso de pago vencido, directo al WhatsApp de tus alumnos.",
   },
   {
     icon: GraduationCap,
-    title: "Inscripciones digitales",
+    title: "Inscripciones en segundos",
     description:
-      "Proceso de inscripcion fluido y sin papel. El alumno llena sus datos, elige su grupo y queda registrado al instante.",
+      "Da de alta a un alumno, asignalo a su grupo y define su dia de pago. El sistema lleva el control desde ese momento.",
   },
   {
     icon: BarChart3,
     title: "Reportes y metricas",
     description:
-      "Dashboards en tiempo real: ingresos, alumnos activos, asistencia, desercion. Toma decisiones con datos, no con intuicion.",
+      "Dashboard en tiempo real: alumnos activos, ingresos del mes y pagos pendientes de cobrar. Decisiones con datos, no con intuicion.",
   },
 ];
 

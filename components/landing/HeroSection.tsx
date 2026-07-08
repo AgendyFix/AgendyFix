@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "motion/react";
 import { ArrowRight, MessageCircle, CheckCircle } from "lucide-react";
 import { SectionTracker } from "./SectionTracker";
 import { buildWaUrl, trackWaClick, trackEvent } from "@/lib/tracking";
@@ -39,7 +38,7 @@ export function HeroSection() {
                   antes de que hidrate React, no después. */}
               <div>
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs font-medium text-white/90 mb-6 backdrop-blur-sm">
-                  Software para academias y escuelas
+                  Software para academias
                 </span>
               </div>
 
@@ -54,12 +53,7 @@ export function HeroSection() {
                 para que te enfoques en ensenar.
               </p>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex flex-col sm:flex-row gap-3 mb-10"
-              >
+              <div className="flex flex-col sm:flex-row gap-3 mb-10">
                 <a
                   href={buildWaUrl(WA_MSG)}
                   target="_blank"
@@ -80,36 +74,23 @@ export function HeroSection() {
                   Ver funcionalidades
                   <ArrowRight className="h-4 w-4" />
                 </a>
-              </motion.div>
+              </div>
 
-              <motion.ul
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-                className="space-y-2"
-              >
-                {HIGHLIGHTS.map((item, i) => (
-                  <motion.li
+              <ul className="space-y-2">
+                {HIGHLIGHTS.map((item) => (
+                  <li
                     key={item}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: 0.5 + i * 0.1 }}
                     className="flex items-center gap-2.5 text-sm text-white/75"
                   >
                     <CheckCircle className="h-4 w-4 text-primary shrink-0" />
                     {item}
-                  </motion.li>
+                  </li>
                 ))}
-              </motion.ul>
+              </ul>
             </div>
 
             {/* Visual */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="hidden lg:flex justify-center"
-            >
+            <div className="hidden lg:flex justify-center">
               <div className="relative w-full max-w-md">
                 <div className="rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-6 shadow-2xl">
                   <div className="space-y-4">
@@ -153,7 +134,7 @@ export function HeroSection() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>

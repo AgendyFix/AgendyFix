@@ -38,7 +38,7 @@ export function LandingFooter() {
               <span className="text-lg font-bold text-foreground">AgendyFix</span>
             </div>
             <p className="text-sm text-muted-foreground max-w-sm leading-relaxed mb-4">
-              El software de gestion para academias y escuelas en Latinoamerica.
+              El software de gestion para academias en Mexico.
               Centraliza alumnos, pagos, clases y comunicacion en un solo lugar.
             </p>
             <a
@@ -49,7 +49,7 @@ export function LandingFooter() {
               className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
             >
               <MessageCircle className="h-4 w-4" />
-              +52 56 6771 4084
+              +52 99 9576 8092
             </a>
           </div>
 
