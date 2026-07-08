@@ -7,36 +7,112 @@
         <meta name="description" content="Controla alumnos, inscripciones y pagos de tu academia. Envía recordatorios automáticos por WhatsApp y olvídate de la cobranza manual. Prueba 1 mes gratis.">
         <meta name="keywords" content="software academia, gestión academia baile, control pagos alumnos, recordatorios WhatsApp academia, inscripciones academia, academia música, academia salsa, academia artes marciales, software academia México">
         <meta name="robots" content="index, follow">
+        <link rel="canonical" href="https://agendyfix.com/">
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
         <meta property="og:url" content="https://agendyfix.com/">
         <meta property="og:title" content="AgendyFix | Software de Gestión para Academias">
         <meta property="og:description" content="Controla alumnos, pagos e inscripciones de tu academia. Recordatorios automáticos por WhatsApp. $25 MXN por alumno al mes.">
-        <meta property="og:image" content="https://agendyfix.com/resources/agendyfix_logo_png.png">
+        <meta property="og:image" content="https://agendyfix.com/resources/og_image.jpg">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:locale" content="es_MX">
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:url" content="https://agendyfix.com/">
         <meta name="twitter:title" content="AgendyFix | Software de Gestión para Academias">
         <meta name="twitter:description" content="Controla alumnos, pagos e inscripciones de tu academia. Recordatorios automáticos por WhatsApp. $25 MXN por alumno al mes.">
-        <meta name="twitter:image" content="https://agendyfix.com/resources/agendyfix_logo_png.png">
+        <meta name="twitter:image" content="https://agendyfix.com/resources/og_image.jpg">
         <!-- Favicon & Manifest -->
         <link rel="icon" href="resources/favicon.ico" type="image/x-icon">
-        <link rel="icon" type="image/png" sizes="32x32" href="resources/agendyfix_logo_png.png">
+        <link rel="icon" type="image/png" sizes="120x120" href="resources/agendyfix_logo_120.png">
         <link rel="manifest" href="/manifest.json">
         <!-- Schema.org JSON-LD -->
         <script type="application/ld+json">
         {
             "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            "name": "AgendyFix",
-            "image": "https://agendyfix.com/resources/agendyfix_logo_png.png",
-            "url": "https://agendyfix.com/",
-            "telephone": "+52 99 9576 8092",
-            "address": {
-                "@type": "PostalAddress",
-                "addressCountry": "MX"
-            },
-            "description": "Software de gestión para academias de baile, música y artes en México. Control de alumnos, pagos e inscripciones con notificaciones automáticas por WhatsApp."
+            "@graph": [
+                {
+                    "@type": "SoftwareApplication",
+                    "@id": "https://agendyfix.com/#software",
+                    "name": "AgendyFix",
+                    "applicationCategory": "BusinessApplication",
+                    "operatingSystem": "Web",
+                    "url": "https://agendyfix.com/",
+                    "image": "https://agendyfix.com/resources/agendyfix_logo_512.png",
+                    "description": "Software de gestión para academias de baile, música, artes marciales y yoga en México. Control de alumnos, inscripciones y pagos mensuales con recordatorios automáticos por WhatsApp.",
+                    "inLanguage": "es-MX",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "25",
+                        "priceCurrency": "MXN",
+                        "description": "$25 MXN por alumno activo al mes. Primer mes gratis, sin tarjeta de crédito."
+                    },
+                    "featureList": [
+                        "Registro de alumnos e inscripciones",
+                        "Control de pagos mensuales y morosidad",
+                        "Recordatorios automáticos por WhatsApp",
+                        "Grupos, horarios e instructores",
+                        "Dashboard con métricas de la academia"
+                    ],
+                    "publisher": { "@id": "https://agendyfix.com/#org" }
+                },
+                {
+                    "@type": "Organization",
+                    "@id": "https://agendyfix.com/#org",
+                    "name": "AgendyFix",
+                    "url": "https://agendyfix.com/",
+                    "logo": "https://agendyfix.com/resources/agendyfix_logo_512.png",
+                    "telephone": "+52 99 9576 8092",
+                    "address": { "@type": "PostalAddress", "addressCountry": "MX" }
+                },
+                {
+                    "@type": "FAQPage",
+                    "@id": "https://agendyfix.com/#faq",
+                    "mainEntity": [
+                        {
+                            "@type": "Question",
+                            "name": "¿Qué es AgendyFix?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "AgendyFix es un software de gestión para academias de baile, música, artes marciales y yoga en México. Automatiza el control de alumnos, inscripciones y pagos mensuales, y envía recordatorios de pago automáticos por WhatsApp para reducir la morosidad."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "¿Cuánto cuesta AgendyFix?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "AgendyFix cuesta $25 MXN por alumno activo al mes, sin membresías fijas ni costos ocultos. El primer mes es gratis y no se requiere tarjeta de crédito."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "¿Para qué tipo de academias sirve AgendyFix?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "AgendyFix está diseñado para academias de baile (salsa, ballet, jazz), escuelas de música, academias de artes marciales, estudios de yoga y en general cualquier escuela que cobre mensualidades a sus alumnos."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "¿Cómo funcionan los recordatorios de pago por WhatsApp?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Cinco días antes del vencimiento, el alumno recibe automáticamente un recordatorio por WhatsApp. Si no paga, recibe un aviso de pago vencido. Todo sin que el dueño de la academia tenga que enviar mensajes manualmente."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "¿Cuánto tiempo toma configurar mi academia en AgendyFix?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Menos de 10 minutos: creas tus grupos con horarios y mensualidad, inscribes a tus alumnos con su día de pago, y el sistema empieza a llevar el control y a notificar automáticamente."
+                            }
+                        }
+                    ]
+                }
+            ]
         }
         </script>
         <link rel="stylesheet" href="style.css">
@@ -46,7 +122,7 @@
         <div class="container">
             <nav class="navbar">
                 <div class="logo">
-                    <img src="resources/agendyfix_logo_png.png" alt="Logo de AgendyFix, software de gestión para academias en México" width="60" height="60">
+                    <img src="resources/agendyfix_logo_120.png" alt="Logo de AgendyFix, software de gestión para academias en México" width="60" height="60">
                     <span class="logo-text">AgendyFix</span>
                 </div>
                 <ul class="nav-links">
@@ -343,6 +419,36 @@
                     <a href="https://app.agendyfix.com" class="enterprise-button" target="_blank">Probar gratis ahora</a>
                 </div>
 
+            </div>
+        </section>
+
+        <section id="faq" class="section faq">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Preguntas frecuentes</h2>
+                </div>
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary>¿Qué es AgendyFix?</summary>
+                        <p>AgendyFix es un software de gestión para academias de baile, música, artes marciales y yoga en México. Automatiza el control de alumnos, inscripciones y pagos mensuales, y envía recordatorios de pago automáticos por WhatsApp para reducir la morosidad.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>¿Cuánto cuesta AgendyFix?</summary>
+                        <p>$25 MXN por alumno activo al mes, sin membresías fijas ni costos ocultos. El primer mes es gratis y no se requiere tarjeta de crédito.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>¿Para qué tipo de academias sirve?</summary>
+                        <p>Para academias de baile (salsa, ballet, jazz), escuelas de música, academias de artes marciales, estudios de yoga y en general cualquier escuela que cobre mensualidades a sus alumnos.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>¿Cómo funcionan los recordatorios de pago por WhatsApp?</summary>
+                        <p>Cinco días antes del vencimiento, tu alumno recibe automáticamente un recordatorio por WhatsApp. Si no paga, recibe un aviso de pago vencido. Todo sin que tengas que enviar mensajes manualmente.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>¿Cuánto tiempo toma configurar mi academia?</summary>
+                        <p>Menos de 10 minutos: creas tus grupos con horarios y mensualidad, inscribes a tus alumnos con su día de pago, y el sistema empieza a llevar el control y a notificar automáticamente.</p>
+                    </details>
+                </div>
             </div>
         </section>
 

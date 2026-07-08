@@ -1,0 +1,21 @@
+{
+  "name": "AgendyFix",
+  "short_name": "AgendyFix",
+  "description": "Software de gestión para academias de baile, música y artes en México.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#37a9e1",
+  "icons": [
+    {
+      "src": "/resources/agendyfix_logo_120.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "/resources/agendyfix_logo_512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

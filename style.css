@@ -2,7 +2,10 @@
 :root {
     --navy: #1d2b3c;
     --blue: #37a9e1;
+    --blue-text: #2b96cc;   /* azul para texto grande sobre blanco (contraste AA) */
+    --blue-btn: #1d78a8;    /* azul de fondo para botones con texto blanco (contraste AA) */
     --orange: #ff8126;
+    --orange-btn: #e05f00;  /* naranja de fondo para botones con texto blanco (contraste AA) */
     --green: #1fb060;
     --light-gray: #f5f7fa;
     --white: #ffffff;
@@ -78,12 +81,13 @@ header {
 }
 
 .cta-button {
-    background-color: var(--orange);
+    background-color: var(--orange-btn);
     color: white;
     border: none;
     border-radius: 30px;
     padding: 12px 25px;
-    font-weight: 600;
+    font-size: 1.17rem;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.3s;
     text-decoration: none;
@@ -317,7 +321,7 @@ header {
 .step-number {
     font-size: 3rem;
     font-weight: 800;
-    color: var(--blue);
+    color: var(--blue-text);
     margin-bottom: 15px;
 }
 .step-title {
@@ -361,7 +365,7 @@ header {
 .stat-number {
     font-size: 3.5rem;
     font-weight: 800;
-    color: var(--blue);
+    color: var(--blue-text);
     margin-bottom: 10px;
 }
 
@@ -438,13 +442,13 @@ header {
 }
 
 .cta-button-white {
-    background-color: var(--orange);
+    background-color: var(--orange-btn);
     color: white;
     border: none;
     border-radius: 30px;
     padding: 15px 35px;
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.17rem;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.3s;
     text-decoration: none;
@@ -677,7 +681,7 @@ input:checked + .toggle-slider:before {
 .plan-price .amount {
     font-size: 3.5rem;
     font-weight: 800;
-    color: var(--blue);
+    color: var(--blue-text);
     line-height: 1;
 }
 
@@ -726,17 +730,17 @@ input:checked + .toggle-slider:before {
 .plan-button {
     display: block;
     width: 100%;
-    background-color: var(--blue);
+    background-color: var(--blue-btn);
     color: white;
     text-align: center;
     padding: 15px 30px;
     border-radius: 30px;
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
     transition: all 0.3s;
     border: none;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.17rem;
 }
 
 .plan-button:hover {
@@ -746,7 +750,7 @@ input:checked + .toggle-slider:before {
 }
 
 .pricing-card.featured .plan-button {
-    background-color: var(--orange);
+    background-color: var(--orange-btn);
 }
 
 .pricing-card.featured .plan-button:hover {
@@ -781,11 +785,12 @@ input:checked + .toggle-slider:before {
 }
 
 .enterprise-button {
-    background-color: var(--orange);
+    background-color: var(--orange-btn);
     color: white;
     padding: 15px 40px;
     border-radius: 30px;
-    font-weight: 600;
+    font-size: 1.17rem;
+    font-weight: 700;
     text-decoration: none;
     white-space: nowrap;
     transition: all 0.3s;
@@ -963,4 +968,52 @@ input:checked + .toggle-slider:before {
 .site-footer a:hover {
     color: var(--light-gray);
     text-decoration: underline;
+}
+
+/* FAQ */
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--white);
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.faq-item summary {
+    cursor: pointer;
+    padding: 20px 25px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--navy);
+    list-style: none;
+    position: relative;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: "+";
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: var(--blue-text);
+}
+
+.faq-item[open] summary::after {
+    content: "\2212";
+}
+
+.faq-item p {
+    padding: 0 25px 20px;
+    color: var(--text-color);
 }
