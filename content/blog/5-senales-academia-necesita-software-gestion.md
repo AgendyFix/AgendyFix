@@ -72,7 +72,7 @@ No todos los software son iguales. Para una academia necesitas:
 4. **Comunicación integrada** — Recordatorios por WhatsApp, avisos masivos
 5. **Reportes básicos** — Ingresos mensuales, asistencia, deserción
 
-Herramientas como AgendyFix están diseñadas específicamente para academias, con todas estas funcionalidades integradas en una sola plataforma.
+Herramientas como AgendyFix están diseñadas específicamente para academias y cubren lo esencial de esta lista — alumnos, grupos y horarios, control de pagos y recordatorios por WhatsApp — en una sola plataforma.
 
 ## Preguntas frecuentes
 

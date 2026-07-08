@@ -89,7 +89,7 @@ Las clases individuales son las más difíciles de coordinar porque cada alumno 
 
 ## La tecnología como aliada
 
-Con herramientas como AgendyFix puedes visualizar todo tu calendario en tiempo real, detectar conflictos antes de que ocurran y permitir que alumnos vean disponibilidad directamente. Un buen software de gestión convierte horas de planeación semanal en minutos.
+Con herramientas como AgendyFix registras cada grupo con su horario, nivel, instructor y mensualidad, y tienes la vista completa de tu operación en un solo lugar. Un buen software de gestión convierte horas de planeación semanal en minutos.
 
 ## Preguntas frecuentes
 

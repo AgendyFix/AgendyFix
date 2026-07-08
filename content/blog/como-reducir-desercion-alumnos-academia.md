@@ -61,7 +61,7 @@ Si tu lista de alumnos está en Excel, los pagos en una libreta y la comunicaci�
 
 La razón principal por la que las academias pierden alumnos no es falta de calidad en la enseñanza — es falta de seguimiento administrativo. Nadie tiene tiempo para revisar asistencias manualmente y enviar 50 mensajes de seguimiento.
 
-La solución es automatizar. Con herramientas como AgendyFix, puedes configurar alertas de inasistencia y recordatorios que se envían solos, para que tú te enfoques en enseñar.
+La solución es automatizar la parte administrativa. Con herramientas como AgendyFix, los recordatorios de pago se envían solos y tienes el historial de cada alumno a la mano, liberándote tiempo para el seguimiento personal que evita las bajas.
 
 ## Preguntas frecuentes
 
