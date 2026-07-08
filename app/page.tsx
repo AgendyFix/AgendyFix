@@ -3,6 +3,9 @@ import { PainPointsSection } from "@/components/landing/PainPointsSection";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";
 import { HowItWorksSection } from "@/components/landing/HowItWorksSection";
 import { SocialProofSection } from "@/components/landing/SocialProofSection";
+import { PricingSection } from "@/components/landing/PricingSection";
+import { FaqSection } from "@/components/landing/FaqSection";
+import { FAQS } from "@/components/landing/faqs";
 import { FinalCtaSection } from "@/components/landing/FinalCtaSection";
 import { ScrollDepthTracker } from "@/components/landing/ScrollDepthTracker";
 
@@ -22,9 +25,10 @@ export default function LandingPage() {
         url: siteUrl,
         offers: {
           "@type": "Offer",
-          price: "0",
+          price: "25",
           priceCurrency: "MXN",
-          description: "Prueba gratuita disponible",
+          description:
+            "$25 MXN por alumno activo al mes. Primer mes gratis, sin tarjeta de crédito.",
         },
       },
       {
@@ -34,10 +38,18 @@ export default function LandingPage() {
         logo: `${siteUrl}/logo.png`,
         contactPoint: {
           "@type": "ContactPoint",
-          telephone: "+52-56-6771-4084",
+          telephone: "+52-99-9576-8092",
           contactType: "sales",
           availableLanguage: "es",
         },
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: FAQS.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: { "@type": "Answer", text: faq.answer },
+        })),
       },
     ],
   };
@@ -54,6 +66,8 @@ export default function LandingPage() {
       <FeaturesSection />
       <HowItWorksSection />
       <SocialProofSection />
+      <PricingSection />
+      <FaqSection />
       <FinalCtaSection />
     </>
   );

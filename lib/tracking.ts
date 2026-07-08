@@ -70,7 +70,7 @@ export function getFirstTouchUrl(): string {
   }
 }
 
-export const WA_NUMBER = "525667714084";
+export const WA_NUMBER = "529995768092";
 export const WA_URL = `https://wa.me/${WA_NUMBER}`;
 
 export function buildWaUrl(message: string): string {

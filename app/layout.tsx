@@ -44,9 +44,9 @@ export const metadata: Metadata = {
       "Centraliza alumnos, inscripciones, pagos y clases grupales. El software que tu academia necesita para crecer.",
     images: [
       {
-        url: "/logo.png",
-        width: 512,
-        height: 512,
+        url: "/og_image.jpg",
+        width: 1200,
+        height: 630,
         alt: "AgendyFix",
       },
     ],
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title: "AgendyFix — Software de gestión para academias",
     description:
       "Centraliza alumnos, pagos y clases. Recordatorios automáticos por WhatsApp.",
-    images: ["/logo.png"],
+    images: ["/og_image.jpg"],
   },
   robots: {
     index: true,

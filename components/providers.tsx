@@ -20,7 +20,7 @@ function PostHogInit() {
   useEffect(() => {
     if (!PH_KEY || isBot()) return;
     posthog.init(PH_KEY, {
-      api_host: "/ingest",
+      api_host: "https://us.i.posthog.com",
       ui_host: "https://us.posthog.com",
       capture_pageview: false,
       capture_pageleave: true,

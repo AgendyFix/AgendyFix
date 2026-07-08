@@ -1,19 +1,13 @@
 import type { NextConfig } from "next";
 
+// Export estático para GitHub Pages: no hay servidor Node, así que PostHog
+// se conecta directo a us.i.posthog.com (ver components/providers.tsx) en
+// lugar del proxy /ingest que requería rewrites.
 const nextConfig: NextConfig = {
-  async rewrites() {
-    return [
-      {
-        source: "/ingest/static/:path*",
-        destination: "https://us-assets.i.posthog.com/static/:path*",
-      },
-      {
-        source: "/ingest/:path*",
-        destination: "https://us.i.posthog.com/:path*",
-      },
-    ];
+  output: "export",
+  images: {
+    unoptimized: true,
   },
-  skipTrailingSlashRedirect: true,
 };
 
 export default nextConfig;

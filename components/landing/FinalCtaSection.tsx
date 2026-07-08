@@ -64,7 +64,7 @@ export function FinalCtaSection() {
               Agenda una demo gratuita
             </a>
             <a
-              href="https://app.agendyfix.com/blog"
+              href="/blog"
               onClick={() =>
                 trackEvent("cta_click", { location: "final_cta", type: "blog" })
               }
