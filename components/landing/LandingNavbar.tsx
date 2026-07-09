@@ -9,11 +9,11 @@ import { buildWaUrl, trackWaClick } from "@/lib/tracking";
 
 const NAV_LINKS = [
   { label: "Funcionalidades", href: "#features" },
-  { label: "Como funciona", href: "#how-it-works" },
+  { label: "Cómo funciona", href: "#how-it-works" },
   { label: "Blog", href: "/blog" },
 ];
 
-const WA_MSG = "Hola, me interesa conocer mas sobre AgendyFix para mi academia.";
+const WA_MSG = "Hola, me interesa conocer más sobre AgendyFix para mi academia.";
 
 export function LandingNavbar() {
   const [scrolled, setScrolled] = useState(false);

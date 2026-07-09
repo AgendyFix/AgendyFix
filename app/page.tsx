@@ -21,7 +21,7 @@ export default function LandingPage() {
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web",
         description:
-          "Software de gestion para academias de baile, musica, artes marciales y yoga en Mexico. Centraliza alumnos, inscripciones, pagos y recordatorios por WhatsApp.",
+          "Software de gestión para academias de baile, música, artes marciales y yoga en México. Centraliza alumnos, inscripciones, pagos y recordatorios por WhatsApp.",
         url: siteUrl,
         offers: {
           "@type": "Offer",

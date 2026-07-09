@@ -12,21 +12,21 @@ const STEPS = [
   {
     icon: MessageCircle,
     number: "01",
-    title: "Contactanos",
+    title: "Contáctanos",
     description:
-      "Platicanos sobre tu academia por WhatsApp. Entendemos tu operacion y tus necesidades especificas.",
+      "Platícanos sobre tu academia por WhatsApp. Entendemos tu operación y tus necesidades específicas.",
   },
   {
     icon: Settings,
     number: "02",
     title: "Configuramos tu cuenta",
     description:
-      "Nuestro equipo configura tu academia: disciplinas, grupos, horarios y alumnos. Tu solo nos das la informacion.",
+      "Nuestro equipo configura tu academia: disciplinas, grupos, horarios y alumnos. Tú solo nos das la información.",
   },
   {
     icon: UserPlus,
     number: "03",
-    title: "Migra tu operacion",
+    title: "Migra tu operación",
     description:
       "Importamos tus alumnos actuales, configuramos recordatorios y dejamos todo listo para que empieces a usar el sistema.",
   },
@@ -35,7 +35,7 @@ const STEPS = [
     number: "04",
     title: "Crece con datos",
     description:
-      "Con todo centralizado, tomas mejores decisiones. Reduces desercion, cobras a tiempo y escalas tu academia.",
+      "Con todo centralizado, tomas mejores decisiones. Reduces deserción, cobras a tiempo y escalas tu academia.",
   },
 ];
 
@@ -54,11 +54,11 @@ export function HowItWorksSection() {
           className="text-center mb-12"
         >
           <h2 className="text-2xl md:text-3xl font-extrabold text-foreground mb-3">
-            Empezar es mas facil de lo que piensas
+            Empezar es más fácil de lo que piensas
           </h2>
           <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-            No necesitas ser experto en tecnologia. Nuestro equipo te acompana en
-            cada paso para que la transicion sea suave.
+            No necesitas ser experto en tecnología. Nuestro equipo te acompaña en
+            cada paso para que la transición sea suave.
           </p>
         </motion.div>
 

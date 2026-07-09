@@ -5,12 +5,12 @@ import Image from "next/image";
 import { MessageCircle } from "lucide-react";
 import { buildWaUrl, trackWaClick } from "@/lib/tracking";
 
-const WA_MSG = "Hola, quiero saber mas sobre AgendyFix.";
+const WA_MSG = "Hola, quiero saber más sobre AgendyFix.";
 
 const LINKS = {
   producto: [
     { label: "Funcionalidades", href: "#features" },
-    { label: "Como funciona", href: "#how-it-works" },
+    { label: "Cómo funciona", href: "#how-it-works" },
   ],
   recursos: [
     { label: "Blog", href: "/blog" },
@@ -38,8 +38,8 @@ export function LandingFooter() {
               <span className="text-lg font-bold text-foreground">AgendyFix</span>
             </div>
             <p className="text-sm text-muted-foreground max-w-sm leading-relaxed mb-4">
-              El software de gestion para academias en Mexico.
-              Centraliza alumnos, pagos, clases y comunicacion en un solo lugar.
+              El software de gestión para academias en México.
+              Centraliza alumnos, pagos, clases y comunicación en un solo lugar.
             </p>
             <a
               href={buildWaUrl(WA_MSG)}

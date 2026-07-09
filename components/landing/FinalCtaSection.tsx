@@ -6,7 +6,7 @@ import { SectionTracker } from "./SectionTracker";
 import { buildWaUrl, trackWaClick, trackEvent } from "@/lib/tracking";
 
 const WA_MSG =
-  "Hola, quiero agendar una demo de AgendyFix para mi academia. Me gustaria conocer precios y funcionalidades.";
+  "Hola, quiero agendar una demo de AgendyFix para mi academia. Me gustaría conocer precios y funcionalidades.";
 
 export function FinalCtaSection() {
   return (
@@ -42,8 +42,8 @@ export function FinalCtaSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-white/80 text-base md:text-lg mb-8 max-w-xl mx-auto leading-relaxed"
           >
-            Habla con nuestro equipo, te mostramos como AgendyFix puede
-            transformar la operacion de tu academia en menos de una semana.
+            Habla con nuestro equipo, te mostramos cómo AgendyFix puede
+            transformar la operación de tu academia en menos de una semana.
           </motion.p>
 
           <motion.div

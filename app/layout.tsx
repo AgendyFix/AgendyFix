@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     "pagos academia",
     "clases grupales",
     "recordatorios WhatsApp",
-    "software escuela de musica",
+    "software escuela de música",
     "academia de danza",
     "estudio de yoga",
     "artes marciales gestión",

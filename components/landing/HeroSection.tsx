@@ -8,9 +8,9 @@ const WA_MSG =
   "Hola, me interesa AgendyFix para mi academia. Quiero agendar una demo.";
 
 const HIGHLIGHTS = [
-  "Gestion de alumnos e inscripciones",
+  "Gestión de alumnos e inscripciones",
   "Control de pagos y mensualidades",
-  "Recordatorios automaticos por WhatsApp",
+  "Recordatorios automáticos por WhatsApp",
   "Clases grupales y horarios",
 ];
 
@@ -48,9 +48,9 @@ export function HeroSection() {
               </h1>
 
               <p className="text-white/80 text-base md:text-lg leading-relaxed mb-8 max-w-lg">
-                Deja de cobrar por WhatsApp, apuntar alumnos en hojas de calculo y
+                Deja de cobrar por WhatsApp, apuntar alumnos en hojas de cálculo y
                 perder inscripciones. AgendyFix centraliza todo en un solo lugar
-                para que te enfoques en ensenar.
+                para que te enfoques en enseñar.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3 mb-10">

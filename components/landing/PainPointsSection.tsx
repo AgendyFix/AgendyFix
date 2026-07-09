@@ -14,17 +14,17 @@ const PAINS = [
     icon: FileSpreadsheet,
     title: "Inscripciones en papel o Excel",
     description:
-      "Hojas de calculo, libretas y grupos de WhatsApp que se descontrolan cada inicio de mes. Pierdes alumnos por no tener un proceso claro.",
+      "Hojas de cálculo, libretas y grupos de WhatsApp que se descontrolan cada inicio de mes. Pierdes alumnos por no tener un proceso claro.",
   },
   {
     icon: MessageSquareWarning,
     title: "Cobros manuales y sin control",
     description:
-      "No sabes quien ya pago, quien debe y cuanto se te queda pendiente. Los recordatorios de pago los mandas tu a mano.",
+      "No sabes quién ya pagó, quién debe y cuánto se te queda pendiente. Los recordatorios de pago los mandas tú a mano.",
   },
   {
     icon: UserMinus,
-    title: "Desercion silenciosa",
+    title: "Deserción silenciosa",
     description:
       "Alumnos dejan de venir sin que te des cuenta. No tienes forma de medir asistencia ni de reaccionar a tiempo.",
   },
@@ -32,7 +32,7 @@ const PAINS = [
     icon: ChartNoAxesCombined,
     title: "Cero visibilidad de tu negocio",
     description:
-      "No sabes cuantos alumnos activos tienes, cual es tu ingreso mensual ni que clases tienen mayor demanda.",
+      "No sabes cuántos alumnos activos tienes, cuál es tu ingreso mensual ni qué clases tienen mayor demanda.",
   },
 ];
 
@@ -51,8 +51,8 @@ export function PainPointsSection() {
             Estos problemas te suenan familiares
           </h2>
           <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-            La mayoria de las academias pierden tiempo, dinero y alumnos por no tener
-            un sistema que los ayude a organizar su operacion.
+            La mayoría de las academias pierden tiempo, dinero y alumnos por no tener
+            un sistema que los ayude a organizar su operación.
           </p>
         </motion.div>
 

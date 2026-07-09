@@ -14,7 +14,7 @@ import { SectionTracker } from "./SectionTracker";
 const FEATURES = [
   {
     icon: Users,
-    title: "Gestion de alumnos",
+    title: "Gestión de alumnos",
     description:
       "Directorio completo con datos de contacto, grupo asignado e historial de pagos de cada alumno. Todo accesible en un click.",
   },
@@ -22,7 +22,7 @@ const FEATURES = [
     icon: CreditCard,
     title: "Control de pagos",
     description:
-      "Visualiza al instante quien pago, quien esta vencido y cuanto se debe. Los pagos del mes se generan solos, sin que hagas nada.",
+      "Visualiza al instante quién pagó, quién está vencido y cuánto se debe. Los pagos del mes se generan solos, sin que hagas nada.",
   },
   {
     icon: CalendarDays,
@@ -34,19 +34,19 @@ const FEATURES = [
     icon: Bell,
     title: "Recordatorios por WhatsApp",
     description:
-      "Recordatorio automatico 5 dias antes del vencimiento y aviso de pago vencido, directo al WhatsApp de tus alumnos.",
+      "Recordatorio automático 5 días antes del vencimiento y aviso de pago vencido, directo al WhatsApp de tus alumnos.",
   },
   {
     icon: GraduationCap,
     title: "Inscripciones en segundos",
     description:
-      "Da de alta a un alumno, asignalo a su grupo y define su dia de pago. El sistema lleva el control desde ese momento.",
+      "Da de alta a un alumno, asígnalo a su grupo y define su día de pago. El sistema lleva el control desde ese momento.",
   },
   {
     icon: BarChart3,
-    title: "Reportes y metricas",
+    title: "Reportes y métricas",
     description:
-      "Dashboard en tiempo real: alumnos activos, ingresos del mes y pagos pendientes de cobrar. Decisiones con datos, no con intuicion.",
+      "Dashboard en tiempo real: alumnos activos, ingresos del mes y pagos pendientes de cobrar. Decisiones con datos, no con intuición.",
   },
 ];
 
@@ -65,7 +65,7 @@ export function FeaturesSection() {
             Todo lo que necesitas en un solo lugar
           </h2>
           <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-            Funcionalidades disenadas para academias de musica, danza, yoga, idiomas,
+            Funcionalidades diseñadas para academias de música, danza, yoga, idiomas,
             artes marciales y cualquier espacio educativo.
           </p>
         </motion.div>

@@ -6,7 +6,7 @@ import { MessageCircle, X } from "lucide-react";
 import { buildWaUrl, trackWaClick } from "@/lib/tracking";
 
 const WA_MSG =
-  "Hola, me interesa AgendyFix para gestionar mi academia. Me gustaria agendar una demo.";
+  "Hola, me interesa AgendyFix para gestionar mi academia. Me gustaría agendar una demo.";
 
 export function WhatsAppFab() {
   const [showTooltip, setShowTooltip] = useState(false);

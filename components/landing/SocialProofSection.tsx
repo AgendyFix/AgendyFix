@@ -5,7 +5,7 @@ import { Music, Dumbbell, Palette, Languages, Swords, Heart } from "lucide-react
 import { SectionTracker } from "./SectionTracker";
 
 const ACADEMY_TYPES = [
-  { icon: Music, label: "Musica" },
+  { icon: Music, label: "Música" },
   { icon: Heart, label: "Yoga y pilates" },
   { icon: Palette, label: "Artes y pintura" },
   { icon: Swords, label: "Artes marciales" },
@@ -16,19 +16,19 @@ const ACADEMY_TYPES = [
 const TESTIMONIALS = [
   {
     quote:
-      "Antes tardaba horas cobrando por WhatsApp. Ahora todo esta automatizado y mis alumnos reciben recordatorios solos.",
+      "Antes tardaba horas cobrando por WhatsApp. Ahora todo está automatizado y mis alumnos reciben recordatorios solos.",
     author: "Carolina M.",
     role: "Directora, Academia de Danza",
   },
   {
     quote:
-      "Por fin tengo visibilidad de cuantos alumnos activos tengo, quien debe y cuanto ingreso genero cada mes.",
+      "Por fin tengo visibilidad de cuántos alumnos activos tengo, quién debe y cuánto ingreso genero cada mes.",
     author: "Roberto F.",
-    role: "Fundador, Escuela de Musica",
+    role: "Fundador, Escuela de Música",
   },
   {
     quote:
-      "La migracion fue super sencilla. El equipo de AgendyFix configuro todo y en una semana ya estabamos operando.",
+      "La migración fue súper sencilla. El equipo de AgendyFix configuró todo y en una semana ya estábamos operando.",
     author: "Ana L.",
     role: "Coordinadora, Centro de Idiomas",
   },
@@ -46,7 +46,7 @@ export function SocialProofSection() {
           className="text-center mb-12"
         >
           <h2 className="text-2xl md:text-3xl font-extrabold text-foreground mb-3">
-            Disenado para todo tipo de academias
+            Diseñado para todo tipo de academias
           </h2>
           <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto mb-8">
             Sin importar tu disciplina, AgendyFix se adapta a la forma en que operas.
