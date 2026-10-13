@@ -156,13 +156,35 @@ export function fallbackAccent(slug: string): string {
   return FALLBACK_ACCENTS[hashString(slug) % FALLBACK_ACCENTS.length];
 }
 
-function rotate(hex: string, deg: number, sat: number, light: number): string {
-  const hsl = rgbToHsl(hexToRgb(hex));
+const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
+
+/**
+ * Apoyo del mesh: mismo tono (giro pequeño), algo más oscuro y con menos croma.
+ * Naranja → terracota, cian → azul, magenta → fucsia profundo.
+ */
+function supportFrom(accent: string): string {
+  const hsl = rgbToHsl(hexToRgb(accent));
+  // Cianes y azules giran hacia el azul (no hacia el verde); el resto hacia el
+  // tono más profundo (naranja → terracota, ámbar → naranja, magenta → fucsia).
+  const direction = hsl.h >= 160 && hsl.h < 250 ? 1 : -1;
   return rgbToHex(
     hslToRgb({
-      h: hsl.h + deg,
-      s: Math.max(sat, Math.min(1, hsl.s)),
-      l: light,
+      h: hsl.h + direction * 22,
+      s: clamp01(hsl.s * 0.85),
+      l: clamp01(Math.min(hsl.l - 0.1, 0.5)),
+    }),
+  );
+}
+
+/** Realce para textos pequeños: mismo tono (giro pequeño) y más claro. */
+function highlightFrom(accent: string): string {
+  const hsl = rgbToHsl(hexToRgb(accent));
+  return rgbToHex(
+    hslToRgb({
+      h: hsl.h + 15,
+      // Grises y negros se quedan grises (no inventar un tono).
+      s: hsl.s < 0.1 ? hsl.s : clamp01(Math.max(hsl.s, 0.6)),
+      l: clamp01(Math.max(hsl.l + 0.12, 0.7)),
     }),
   );
 }
@@ -180,12 +202,15 @@ export function buildAcademyTheme(
   accentColor: string | null | undefined,
   slug: string,
 ): AcademyTheme {
-  const accent = normalizeHex(accentColor) ?? fallbackAccent(slug);
-  const accentInk = pickInkOn(accent);
+  const rawAccent = normalizeHex(accentColor) ?? fallbackAccent(slug);
+  const accentInk = pickInkOn(rawAccent);
+  // Si ni el texto oscuro ni el claro llegan a 4.5:1 (p. ej. #E11D48), se
+  // ajusta apenas la luminosidad del acento, conservando tono y saturación.
+  const accent = ensureContrast(rawAccent, accentInk, 4.5);
   const accentText = ensureContrast(accent, DARK.bg, 4.5);
-  // Apoyo: giro de -85° (magenta → violeta); realce: +100° (magenta → lima).
-  const support = rotate(accent, -85, 0.7, 0.66);
-  const highlight = ensureContrast(rotate(accent, 100, 0.85, 0.62), DARK.bg, 4.5);
+  // Paleta análoga: la página se ve "del color de la academia", sin tonos ajenos.
+  const support = supportFrom(accent);
+  const highlight = ensureContrast(highlightFrom(accent), DARK.bg, 4.5);
 
   const theme: Omit<AcademyTheme, "cssVars"> = {
     accent,
@@ -217,13 +242,18 @@ export function buildAcademyTheme(
   };
 }
 
-/** "Dance Company" → "DC"; "Yoga" → "Y". Máximo 2 letras. */
+/** Conectores que no cuentan para el monograma ("Escuela de Música" → "EM"). */
+const CONNECTORS = new Set(["de", "del", "la", "las", "el", "los", "y", "e", "en"]);
+
+/** "Dance Company" → "DC"; "Escuela de Música Allegro" → "EM"; "Yoga" → "Y". Máximo 2 letras. */
 export function initials(name: string): string {
-  const words = name
+  const all = name
     .replace(/[^\p{L}\p{N}\s]/gu, " ")
     .split(/\s+/)
     .filter(Boolean);
-  if (words.length === 0) return "?";
+  if (all.length === 0) return "?";
+  const meaningful = all.filter((w) => !CONNECTORS.has(w.toLowerCase()));
+  const words = meaningful.length > 0 ? meaningful : all;
   const letters = words.length === 1 ? [words[0][0]] : [words[0][0], words[1][0]];
   return letters.join("").toUpperCase();
 }

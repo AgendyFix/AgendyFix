@@ -238,3 +238,43 @@
     animation: none;
   }
 }
+
+/* ============================================
+   FRANJA DE ACADEMIAS EN LA HOME (tema claro de la landing)
+   ============================================ */
+.af-academies-marquee {
+  overflow: hidden;
+  padding-block: 8px;
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+.af-academies-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  padding-inline: 8px;
+  animation: af-marquee var(--af-marquee-duration, 30s) linear infinite;
+}
+.af-academies-marquee:hover .af-academies-track,
+.af-academies-marquee:focus-within .af-academies-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .af-academies-marquee {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+  .af-academies-track {
+    animation: none;
+    width: auto;
+    max-width: 72rem;
+    margin-inline: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-inline: 16px;
+  }
+  /* Sin loop no hace falta la copia decorativa. */
+  .af-academies-track > [aria-hidden="true"] {
+    display: none;
+  }
+}
