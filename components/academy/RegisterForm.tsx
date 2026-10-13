@@ -108,8 +108,9 @@ export function RegisterForm({ slug, disciplines, whatsapp }: Props) {
           type="tel"
           inputMode="numeric"
           required
-          pattern="[0-9]{10}"
-          maxLength={10}
+          // Acepta "999 123 4567" o "999-123-4567"; el API normaliza a 10 dígitos
+          pattern="[0-9 ()\-]{10,16}"
+          maxLength={16}
           autoComplete="tel-national"
           className={inputClass}
         />

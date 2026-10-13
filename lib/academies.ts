@@ -38,18 +38,18 @@ export type DirectoryAcademy = {
   instagram_handle: string | null;
 };
 
-/** null si no existe (404) o el API falla. */
+/**
+ * null solo si la academia no existe (404). Cualquier otro fallo lanza, para que
+ * Next siga sirviendo la última versión cacheada en vez de un 404 falso.
+ */
 export async function getAcademy(slug: string): Promise<Academy | null> {
-  try {
-    const res = await fetch(
-      `${API_URL}/public/academies/${encodeURIComponent(slug)}/`,
-      { next: { revalidate: 60 } },
-    );
-    if (!res.ok) return null;
-    return (await res.json()) as Academy;
-  } catch {
-    return null;
-  }
+  const res = await fetch(
+    `${API_URL}/public/academies/${encodeURIComponent(slug)}/`,
+    { next: { revalidate: 60 } },
+  );
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(`API ${res.status} al cargar la academia ${slug}`);
+  return (await res.json()) as Academy;
 }
 
 /** Nunca lanza: lista vacía si el API no responde. */
