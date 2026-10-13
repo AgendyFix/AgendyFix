@@ -44,17 +44,6 @@ export function AcademyBento({ academy }: { academy: Academy }) {
     );
   }
 
-  if (academy.description) {
-    tiles.push(
-      <div key="description" className={`${tile} col-span-2`}>
-        <p className={label}>Sobre nosotros</p>
-        <p className="mt-3 whitespace-pre-line text-base leading-relaxed text-(--af-text)/90 md:text-lg">
-          {academy.description}
-        </p>
-      </div>,
-    );
-  }
-
   const weeklyClasses = academy.groups.reduce((n, g) => n + g.schedules.length, 0);
   if (weeklyClasses > 0) {
     tiles.push(

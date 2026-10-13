@@ -36,9 +36,10 @@ export type AcademyPromotion = {
 export type Academy = {
   name: string;
   slug: string;
-  tagline: string | null;
   description: string | null;
   address: string | null;
+  /** Link de Google Maps que escribe la academia (validado en el API); null si no hay. */
+  maps_url: string | null;
   whatsapp: string | null;
   instagram_handle: string | null;
   logo_url: string | null;
@@ -53,7 +54,7 @@ export type Academy = {
 export type DirectoryAcademy = {
   name: string;
   slug: string;
-  tagline: string | null;
+  description: string | null;
   instagram_handle: string | null;
   logo_url: string | null;
   accent_color: string | null;
@@ -77,17 +78,24 @@ function list<T>(v: unknown, map: (item: Record<string, unknown>) => T | null): 
   return out;
 }
 
+/** Solo aceptamos https (el API ya restringe a hosts de Google Maps). */
+function httpsUrl(v: unknown): string | null {
+  const s = str(v);
+  return s && /^https:\/\//i.test(s.trim()) ? s.trim() : null;
+}
+
 /**
  * Convierte la respuesta cruda del API en un `Academy` con todos los campos
- * presentes. Tolera respuestas anteriores al contrato v2 (sin listas).
+ * presentes. Tolera respuestas anteriores al contrato v3 (`tagline` se ignora,
+ * listas ausentes → vacías).
  */
 export function normalizeAcademy(raw: Record<string, unknown>): Academy {
   return {
     name: String(raw.name ?? ""),
     slug: String(raw.slug ?? ""),
-    tagline: str(raw.tagline),
     description: str(raw.description),
     address: str(raw.address),
+    maps_url: httpsUrl(raw.maps_url),
     whatsapp: str(raw.whatsapp),
     instagram_handle: str(raw.instagram_handle),
     logo_url: str(raw.logo_url),
@@ -154,7 +162,7 @@ export function normalizeDirectoryAcademy(
   return {
     name,
     slug,
-    tagline: str(raw.tagline),
+    description: str(raw.description),
     instagram_handle: str(raw.instagram_handle),
     logo_url: str(raw.logo_url),
     accent_color: str(raw.accent_color),
@@ -209,6 +217,28 @@ export function instagramUrl(handle: string): string {
 
 export function mapsUrl(address: string): string {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+}
+
+/** "Cómo llegar": el link que escribió la academia o, si no hay, la búsqueda por dirección. */
+export function directionsUrl(mapsUrlValue: string | null, address: string): string {
+  return mapsUrlValue ?? mapsUrl(address);
+}
+
+/** Mapa embebido sin API key, construido con la dirección escrita (los links cortos no se embeben). */
+export function mapsEmbedUrl(address: string): string {
+  return `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
+}
+
+/**
+ * Recorta texto para metadata (~155 caracteres por defecto) sin partir palabras
+ * y con elipsis. Colapsa saltos de línea y espacios.
+ */
+export function truncateText(text: string, max = 155): string {
+  const clean = text.replace(/\s+/g, " ").trim();
+  if (clean.length <= max) return clean;
+  const cut = clean.slice(0, max - 1);
+  const lastSpace = cut.lastIndexOf(" ");
+  return `${(lastSpace > max * 0.6 ? cut.slice(0, lastSpace) : cut).trimEnd()}…`;
 }
 
 export function waUrl(number: string, text?: string): string {
@@ -269,6 +299,12 @@ function fmt(time: string): ClockTime {
     m: String(mm).padStart(2, "0"),
     mer: hh >= 12 ? "pm" : "am",
   };
+}
+
+/** "19:00" → "7:00 pm". */
+export function formatClock(time: string): string {
+  const t = fmt(time);
+  return `${t.h}:${t.m} ${t.mer}`;
 }
 
 /** "7:00 – 8:00 pm" (sin el día). */

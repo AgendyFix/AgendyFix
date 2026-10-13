@@ -6,7 +6,7 @@ import { AcademyLogo } from "./AcademyLogo";
 
 /**
  * Tarjeta del catálogo (home y /academias): fondo oscuro con el gradiente del
- * acento de cada academia, logo o monograma, nombre, tagline y handle.
+ * acento de cada academia, logo o monograma, nombre, descripción (2 líneas) y handle.
  */
 export function AcademyCard({ academy }: { academy: DirectoryAcademy }) {
   const theme = buildAcademyTheme(academy.accent_color, academy.slug);
@@ -36,9 +36,9 @@ export function AcademyCard({ academy }: { academy: DirectoryAcademy }) {
         <h3 className="font-display text-[28px] font-extrabold leading-[1] tracking-[-0.03em] text-balance md:text-3xl">
           {academy.name}
         </h3>
-        {academy.tagline && (
+        {academy.description && (
           <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-(--af-text)/80">
-            {academy.tagline}
+            {academy.description}
           </p>
         )}
         <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold">

@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { cache } from "react";
 import { notFound } from "next/navigation";
-import { getAcademy, groupByDiscipline } from "@/lib/academies";
+import { getAcademy, groupByDiscipline, truncateText } from "@/lib/academies";
 import { buildAcademyTheme, DARK } from "@/lib/theme";
 import { AcademyHero, heroCtaLabel } from "@/components/academy/AcademyHero";
 import { AcademyMarquee } from "@/components/academy/AcademyMarquee";
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!academy) return {};
 
   const title = `${academy.name} | Clases e inscripciones`;
-  const description = academy.tagline || academy.description || undefined;
+  const description = academy.description ? truncateText(academy.description) : undefined;
   return {
     title: { absolute: title },
     description,
@@ -72,8 +72,6 @@ export default async function AcademyPage({ params }: Props) {
 
         <AcademyPrices prices={academy.prices} paymentMethods={academy.payment_methods} />
 
-        <AcademyLocation address={academy.address} instagramHandle={academy.instagram_handle} />
-
         <AcademySection id="inscripcion" eyebrow="Inscripción" title="Aparta tu lugar" className="md:max-w-3xl">
           <RegisterForm
             slug={slug}
@@ -83,6 +81,13 @@ export default async function AcademyPage({ params }: Props) {
             instagramHandle={academy.instagram_handle}
           />
         </AcademySection>
+
+        {/* Al final (contrato v3): dirección, "Cómo llegar", Instagram y mapa embebido. */}
+        <AcademyLocation
+          address={academy.address}
+          mapsUrl={academy.maps_url}
+          instagramHandle={academy.instagram_handle}
+        />
 
         <footer className="px-5 pb-28 pt-4 text-center text-xs text-(--af-muted) md:pb-10">
           © {new Date().getFullYear()} {academy.name}

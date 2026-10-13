@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { getAcademy } from "@/lib/academies";
+import { getAcademy, truncateText } from "@/lib/academies";
 import { buildAcademyTheme, initials } from "@/lib/theme";
 
 export const alt = "Página de la academia";
@@ -95,8 +95,10 @@ export default async function OpenGraphImage({ params }: Props) {
           >
             {name}
           </div>
-          {academy?.tagline && (
-            <div style={{ fontSize: 30, opacity: 0.85, maxWidth: 900 }}>{academy.tagline}</div>
+          {academy?.description && (
+            <div style={{ fontSize: 30, opacity: 0.85, maxWidth: 1000, lineHeight: 1.3 }}>
+              {truncateText(academy.description, 120)}
+            </div>
           )}
         </div>
       </div>
