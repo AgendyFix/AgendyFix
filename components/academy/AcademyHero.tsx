@@ -27,8 +27,11 @@ export function AcademyHero({ academy }: { academy: Academy }) {
 
   return (
     <header className="af-mesh af-grain relative flex min-h-[100svh] flex-col overflow-hidden lg:min-h-[80svh] lg:justify-center">
-      {/* Barra superior: logo + Instagram (en lg queda fija arriba y el bloque se centra). */}
-      <div>
+      {/* Barra superior: logo + Instagram (en lg queda fija arriba y el bloque se centra).
+          zIndex 2: `.af-grain > *` pone a todos los hijos en z-index 1 y el bloque de contenido
+          (posterior en el DOM) tapaba el link de Instagram. Inline porque esa regla no está en
+          una capa de Tailwind y le gana a las clases z-*. */}
+      <div style={{ zIndex: 2 }}>
         <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-5 pt-5 md:pt-8 lg:absolute lg:inset-x-0 lg:top-0">
           <div className="af-fade-up" style={{ "--d": "0ms" } as React.CSSProperties}>
             <AcademyLogo name={academy.name} logoUrl={academy.logo_url} size={56} priority />
