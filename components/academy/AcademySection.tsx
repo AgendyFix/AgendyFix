@@ -1,16 +1,27 @@
-export function AcademySection({
-  title,
-  children,
-}: {
+import { Reveal } from "./Reveal";
+import { eyebrow as eyebrowClass } from "./styles";
+
+type Props = {
+  id?: string;
+  eyebrow?: string;
   title: string;
   children: React.ReactNode;
-}) {
+  className?: string;
+};
+
+export function AcademySection({ id, eyebrow, title, children, className = "" }: Props) {
   return (
-    <section className="mx-auto max-w-3xl px-5 py-10 md:py-14">
-      <h2 className="mb-6 text-2xl md:text-3xl font-extrabold text-secondary">
-        {title}
-      </h2>
-      {children}
+    <section
+      id={id}
+      className={`mx-auto w-full max-w-5xl scroll-mt-6 px-5 py-16 md:py-24 ${className}`}
+    >
+      <Reveal>
+        {eyebrow && <p className={eyebrowClass}>{eyebrow}</p>}
+        <h2 className="mt-2 font-display text-[40px] font-extrabold leading-[0.95] tracking-[-0.03em] text-(--af-text) md:text-6xl">
+          {title}
+        </h2>
+      </Reveal>
+      <div className="mt-8 md:mt-12">{children}</div>
     </section>
   );
 }

@@ -1,18 +1,28 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import type { Metadata, Viewport } from "next";
+import { cache } from "react";
 import { notFound } from "next/navigation";
-import { getAcademy } from "@/lib/academies";
-import { AcademyHero } from "@/components/academy/AcademyHero";
+import { getAcademy, groupByDiscipline } from "@/lib/academies";
+import { buildAcademyTheme, DARK } from "@/lib/theme";
+import { AcademyHero, heroCtaLabel } from "@/components/academy/AcademyHero";
+import { AcademyMarquee } from "@/components/academy/AcademyMarquee";
+import { AcademyPromo } from "@/components/academy/AcademyPromo";
 import { AcademySection } from "@/components/academy/AcademySection";
 import { AcademySchedule } from "@/components/academy/AcademySchedule";
+import { AcademyBento } from "@/components/academy/AcademyBento";
+import { AcademyPrices } from "@/components/academy/AcademyPrices";
 import { AcademyLocation } from "@/components/academy/AcademyLocation";
 import { RegisterForm } from "@/components/academy/RegisterForm";
+import { StickyCta } from "@/components/academy/StickyCta";
+import { InterestProvider } from "@/components/academy/InterestContext";
 
 type Props = { params: Promise<{ slug: string }> };
 
+// Una sola llamada al API por request aunque metadata, viewport y página la pidan.
+const loadAcademy = cache(getAcademy);
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const academy = await getAcademy(slug);
+  const academy = await loadAcademy(slug);
   if (!academy) return {};
 
   const title = `${academy.name} | Clases e inscripciones`;
@@ -21,54 +31,65 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: { absolute: title },
     description,
     alternates: { canonical: `/${slug}` },
-    openGraph: { type: "website", title, description, url: `/${slug}` },
+    openGraph: { type: "website", title, description, url: `/${slug}`, locale: "es_MX" },
+    twitter: { card: "summary_large_image", title, description },
   };
+}
+
+export async function generateViewport(): Promise<Viewport> {
+  return { themeColor: DARK.bg };
 }
 
 export default async function AcademyPage({ params }: Props) {
   const { slug } = await params;
-  const academy = await getAcademy(slug);
+  const academy = await loadAcademy(slug);
   if (!academy) notFound();
 
+  const theme = buildAcademyTheme(academy.accent_color, slug);
+  const sections = groupByDiscipline(academy);
+  const ctaLabel = heroCtaLabel(academy);
+  const waText = `Hola, vi la página de ${academy.name} y quiero información.`;
+
   return (
-    <div className="min-h-screen bg-background">
-      <AcademyHero academy={academy} />
+    <InterestProvider>
+      <div
+        className="min-h-screen bg-(--af-bg) text-(--af-text)"
+        style={theme.cssVars as React.CSSProperties}
+      >
+        <AcademyHero academy={academy} />
 
-      {academy.description && (
-        <AcademySection title="Sobre nosotros">
-          <p className="whitespace-pre-line leading-relaxed text-foreground/80">
-            {academy.description}
-          </p>
-        </AcademySection>
-      )}
+        <AcademyMarquee items={academy.disciplines.map((d) => d.name)} />
 
-      <AcademySchedule academy={academy} />
+        <AcademyPromo promotions={academy.promotions} />
 
-      {academy.prices_text && (
-        <AcademySection title="Precios">
-          <p className="whitespace-pre-line rounded-2xl border border-border bg-muted p-5 leading-relaxed text-foreground">
-            {academy.prices_text}
-          </p>
-        </AcademySection>
-      )}
+        {sections.length > 0 && (
+          <AcademySection id="horarios" eyebrow="Horarios" title="Clases y grupos">
+            <AcademySchedule sections={sections} />
+          </AcademySection>
+        )}
 
-      {academy.address && <AcademyLocation address={academy.address} />}
+        <AcademyBento academy={academy} />
 
-      <div id="inscripcion" className="scroll-mt-4">
-        <AcademySection title="Inscríbete">
+        <AcademyPrices prices={academy.prices} paymentMethods={academy.payment_methods} />
+
+        <AcademyLocation address={academy.address} instagramHandle={academy.instagram_handle} />
+
+        <AcademySection id="inscripcion" eyebrow="Inscripción" title="Aparta tu lugar" className="md:max-w-3xl">
           <RegisterForm
             slug={slug}
+            academyName={academy.name}
             disciplines={academy.disciplines.map((d) => d.name)}
             whatsapp={academy.whatsapp}
+            instagramHandle={academy.instagram_handle}
           />
         </AcademySection>
-      </div>
 
-      <footer className="py-8 text-center text-xs text-muted-foreground">
-        <Link href="/" className="hover:underline">
-          Página creada con AgendyFix
-        </Link>
-      </footer>
-    </div>
+        <footer className="px-5 pb-28 pt-4 text-center text-xs text-(--af-muted) md:pb-10">
+          © {new Date().getFullYear()} {academy.name}
+        </footer>
+
+        <StickyCta label={ctaLabel} whatsapp={academy.whatsapp} whatsappText={waText} />
+      </div>
+    </InterestProvider>
   );
 }
