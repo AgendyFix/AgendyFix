@@ -3,6 +3,7 @@ import { PainPointsSection } from "@/components/landing/PainPointsSection";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";
 import { HowItWorksSection } from "@/components/landing/HowItWorksSection";
 import { SocialProofSection } from "@/components/landing/SocialProofSection";
+import { AcademiesDirectorySection } from "@/components/landing/AcademiesDirectorySection";
 import { PricingSection } from "@/components/landing/PricingSection";
 import { FaqSection } from "@/components/landing/FaqSection";
 import { FAQS } from "@/components/landing/faqs";
@@ -66,6 +67,7 @@ export default function LandingPage() {
       <FeaturesSection />
       <HowItWorksSection />
       <SocialProofSection />
+      <AcademiesDirectorySection />
       <PricingSection />
       <FaqSection />
       <FinalCtaSection />
