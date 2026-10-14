@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     title: "Academias | AgendyFix",
     description:
       "Catálogo de academias que reciben inscripciones en línea con AgendyFix.",
+    // openGraph del hijo reemplaza al del layout (no se combina): repetimos marca e imagen
+    siteName: "AgendyFix",
+    images: ["/og_image.jpg"],
   },
 };
 

@@ -17,6 +17,13 @@ import { InterestProvider } from "@/components/academy/InterestContext";
 
 type Props = { params: Promise<{ slug: string }> };
 
+// ISR: cada academia se genera en su primera visita y se regenera cada 60 s.
+// Sin generateStaticParams Next la trata como dinámica y la renderiza en cada request.
+export const revalidate = 60;
+export async function generateStaticParams() {
+  return [];
+}
+
 // Una sola llamada al API por request aunque metadata, viewport y página la pidan.
 const loadAcademy = cache(getAcademy);
 

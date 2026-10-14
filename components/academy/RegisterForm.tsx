@@ -135,7 +135,9 @@ export function RegisterForm({ slug, academyName, disciplines, whatsapp, instagr
     setSubmitted(true);
     if (Object.keys(localErrors).length > 0) {
       const first = Object.keys(localErrors)[0];
-      (e.currentTarget.elements.namedItem(first) as HTMLElement | null)?.focus();
+      // Los radios de "interés" devuelven un RadioNodeList (sin focus): enfocamos el primero
+      const el = e.currentTarget.elements.namedItem(first);
+      (el instanceof RadioNodeList ? (el[0] as HTMLElement | undefined) : (el as HTMLElement | null))?.focus();
       return;
     }
     const website = String(new FormData(e.currentTarget).get("website") ?? "");
@@ -414,7 +416,8 @@ export function RegisterForm({ slug, academyName, disciplines, whatsapp, instagr
                 No pudimos enviar tu registro. Revisa tu conexión e intenta de nuevo.
               </p>
             )}
-            {result?.status === "invalid" && Object.keys(serverErrors).length === 0 && (
+            {/* Errores sin campo propio (detail / non_field_errors) caen en el mensaje general */}
+            {result?.status === "invalid" && !Object.keys(serverErrors).some((k) => k in EMPTY) && (
               <p role="alert" className="text-sm" style={{ color: errorText }}>
                 Revisa los datos e intenta de nuevo.
               </p>

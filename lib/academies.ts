@@ -79,6 +79,12 @@ function list<T>(v: unknown, map: (item: Record<string, unknown>) => T | null): 
 }
 
 /** Solo aceptamos https (el API ya restringe a hosts de Google Maps). */
+/** Handle de Instagram válido (letras, números, punto y guion bajo) o null: el link se arma con él. */
+function igHandle(v: unknown): string | null {
+  const s = str(v)?.trim().replace(/^@/, "");
+  return s && /^[A-Za-z0-9._]{1,30}$/.test(s) ? s : null;
+}
+
 function httpsUrl(v: unknown): string | null {
   const s = str(v);
   return s && /^https:\/\//i.test(s.trim()) ? s.trim() : null;
@@ -97,8 +103,8 @@ export function normalizeAcademy(raw: Record<string, unknown>): Academy {
     address: str(raw.address),
     maps_url: httpsUrl(raw.maps_url),
     whatsapp: str(raw.whatsapp),
-    instagram_handle: str(raw.instagram_handle),
-    logo_url: str(raw.logo_url),
+    instagram_handle: igHandle(raw.instagram_handle),
+    logo_url: httpsUrl(raw.logo_url),
     accent_color: str(raw.accent_color),
     prices: list(raw.prices, (p) =>
       typeof p.name === "string" && typeof p.price === "number"
@@ -163,8 +169,8 @@ export function normalizeDirectoryAcademy(
     name,
     slug,
     description: str(raw.description),
-    instagram_handle: str(raw.instagram_handle),
-    logo_url: str(raw.logo_url),
+    instagram_handle: igHandle(raw.instagram_handle),
+    logo_url: httpsUrl(raw.logo_url),
     accent_color: str(raw.accent_color),
   };
 }
@@ -174,6 +180,8 @@ export function normalizeDirectoryAcademy(
  * Next siga sirviendo la última versión cacheada en vez de un 404 falso.
  */
 export async function getAcademy(slug: string): Promise<Academy | null> {
+  // `/[slug]` atrapa cualquier ruta (/wp-login.php, /.env…): ni siquiera llamamos al API
+  if (!/^[a-z0-9-]+$/.test(slug)) return null;
   const res = await fetch(
     `${API_URL}/public/academies/${encodeURIComponent(slug)}/`,
     { next: { revalidate: 60 } },
