@@ -41,7 +41,9 @@ export function validate(v: Values): Partial<Record<Field, string>> {
   const e: Partial<Record<Field, string>> = {};
   if (!v.name.trim()) e.name = "Escribe tu nombre";
   if (!v.last_name.trim()) e.last_name = "Escribe tu apellido";
-  if (v.phone.replace(/\D/g, "").length !== 10) e.phone = "Necesitamos 10 dígitos";
+  // Acepta lada (+52, 52 1, 044); la API normaliza a 10 dígitos y descarta números imposibles.
+  const phoneDigits = v.phone.replace(/\D/g, "").length;
+  if (phoneDigits < 10 || phoneDigits > 13) e.phone = "Necesitamos 10 dígitos";
   if (v.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email.trim()))
     e.email = "Revisa el correo";
   if (!v.interest) e.interest = "Elige una opción";
@@ -299,10 +301,10 @@ export function RegisterForm({ slug, academyName, disciplines, whatsapp, instagr
                 id="reg-phone"
                 name="phone"
                 type="tel"
-                inputMode="numeric"
+                inputMode="tel"
                 autoComplete="tel"
                 placeholder="999 123 4567"
-                maxLength={16}
+                maxLength={20}
                 value={values.phone}
                 onChange={(e) => set("phone", e.target.value)}
                 onBlur={blur("phone")}
