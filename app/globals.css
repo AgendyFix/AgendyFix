@@ -7,6 +7,10 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
+  /* Páginas de academias (las variables las define app/(academias)/layout.tsx;
+     en la landing caen a Geist). */
+  --font-display: var(--font-bricolage, var(--font-geist-sans)), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter, var(--font-geist-sans)), ui-sans-serif, system-ui, sans-serif;
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -112,5 +116,165 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* ============================================
+   PÁGINAS PÚBLICAS DE ACADEMIAS (/<slug>)
+   Tema oscuro; el acento llega por variables --af-* (lib/theme.ts).
+   ============================================ */
+
+.af-academy {
+  color-scheme: dark;
+  font-family: var(--font-body);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.af-academy :focus-visible {
+  outline: 2px solid var(--af-accent-text);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:has(.af-academy) {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Fondo mesh: acento + apoyo + realce sobre el fondo oscuro. */
+.af-mesh {
+  background-color: var(--af-bg);
+  background-image:
+    radial-gradient(70% 55% at 88% 8%, rgb(var(--af-accent-rgb) / 0.78) 0%, rgb(var(--af-accent-rgb) / 0) 62%),
+    radial-gradient(55% 45% at 6% 92%, rgb(var(--af-support-rgb) / 0.62) 0%, rgb(var(--af-support-rgb) / 0) 60%),
+    radial-gradient(40% 35% at 72% 78%, rgb(var(--af-hi-rgb) / 0.16) 0%, rgb(var(--af-hi-rgb) / 0) 65%),
+    linear-gradient(180deg, rgb(11 10 16 / 0) 0%, rgb(11 10 16 / 0) 55%, rgb(11 10 16 / 0.55) 100%);
+}
+
+/* Grano SVG (feTurbulence) en un pseudo-elemento; no requiere JS ni imágenes. */
+.af-grain {
+  position: relative;
+  isolation: isolate;
+}
+.af-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+.af-grain > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Título del hero: palabra por palabra en CSS puro (el texto es SSR y no
+   depende de la hidratación). */
+@keyframes af-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.af-word {
+  display: inline-block;
+  animation: af-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--i, 0) * 60ms + 80ms);
+}
+.af-fade-up {
+  animation: af-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+/* Marquee decorativo (aria-hidden). */
+@keyframes af-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.af-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: af-marquee 28s linear infinite;
+}
+
+/* Confeti ligero del estado de éxito. */
+@keyframes af-confetti {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx), var(--dy)) rotate(560deg) scale(0.6);
+    opacity: 0;
+  }
+}
+.af-confetti {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  width: 8px;
+  height: 13px;
+  border-radius: 2px;
+  pointer-events: none;
+  animation: af-confetti 1.1s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+  animation-delay: var(--delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .af-word,
+  .af-fade-up,
+  .af-marquee-track,
+  .af-confetti {
+    animation: none;
+  }
+}
+
+/* ============================================
+   FRANJA DE ACADEMIAS EN LA HOME (tema claro de la landing)
+   ============================================ */
+.af-academies-marquee {
+  overflow: hidden;
+  padding-block: 8px;
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+.af-academies-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  padding-inline: 8px;
+  animation: af-marquee var(--af-marquee-duration, 30s) linear infinite;
+}
+.af-academies-marquee:hover .af-academies-track,
+.af-academies-marquee:focus-within .af-academies-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .af-academies-marquee {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+  .af-academies-track {
+    animation: none;
+    width: auto;
+    max-width: 72rem;
+    margin-inline: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-inline: 16px;
+  }
+  /* Sin loop no hace falta la copia decorativa. */
+  .af-academies-track > [aria-hidden="true"] {
+    display: none;
   }
 }

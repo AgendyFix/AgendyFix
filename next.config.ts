@@ -1,13 +1,8 @@
 import type { NextConfig } from "next";
 
-// Export estático para GitHub Pages: no hay servidor Node, así que PostHog
-// se conecta directo a us.i.posthog.com (ver components/providers.tsx) en
-// lugar del proxy /ingest que requería rewrites.
-const nextConfig: NextConfig = {
-  output: "export",
-  images: {
-    unoptimized: true,
-  },
-};
+// Hosting en Vercel (render en servidor): las páginas de academias
+// (/<slug>) se renderizan con datos del API. PostHog sigue conectándose
+// directo a us.i.posthog.com (ver components/providers.tsx).
+const nextConfig: NextConfig = {};
 
 export default nextConfig;
