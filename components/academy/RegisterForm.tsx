@@ -36,6 +36,15 @@ const EMPTY: Values = {
   privacy_accepted: false,
 };
 
+/** 10 dígitos + lada opcional (+52 1 = 3 más). */
+const MAX_PHONE_DIGITS = 13;
+
+/** Deja solo lo que se usa para escribir un teléfono y no permite pasar de MAX_PHONE_DIGITS. */
+export function sanitizePhone(next: string, prev: string): string {
+  const clean = next.replace(/[^0-9+()\- ]/g, "");
+  return clean.replace(/\D/g, "").length > MAX_PHONE_DIGITS ? prev : clean;
+}
+
 /** Validación local, suave: solo se muestra tras blur o al enviar. */
 export function validate(v: Values): Partial<Record<Field, string>> {
   const e: Partial<Record<Field, string>> = {};
@@ -43,7 +52,7 @@ export function validate(v: Values): Partial<Record<Field, string>> {
   if (!v.last_name.trim()) e.last_name = "Escribe tu apellido";
   // Acepta lada (+52, 52 1, 044); la API normaliza a 10 dígitos y descarta números imposibles.
   const phoneDigits = v.phone.replace(/\D/g, "").length;
-  if (phoneDigits < 10 || phoneDigits > 13) e.phone = "Necesitamos 10 dígitos";
+  if (phoneDigits < 10 || phoneDigits > MAX_PHONE_DIGITS) e.phone = "Necesitamos 10 dígitos";
   if (v.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email.trim()))
     e.email = "Revisa el correo";
   if (!v.interest) e.interest = "Elige una opción";
@@ -306,7 +315,7 @@ export function RegisterForm({ slug, academyName, disciplines, whatsapp, instagr
                 placeholder="999 123 4567"
                 maxLength={20}
                 value={values.phone}
-                onChange={(e) => set("phone", e.target.value)}
+                onChange={(e) => set("phone", sanitizePhone(e.target.value, values.phone))}
                 onBlur={blur("phone")}
                 aria-invalid={Boolean(errorFor("phone"))}
                 aria-describedby={errorFor("phone") ? "reg-phone-err" : undefined}
