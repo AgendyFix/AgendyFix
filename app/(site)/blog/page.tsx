@@ -77,7 +77,7 @@ export default function BlogPage() {
       />
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-secondary via-secondary/80 to-accent pt-16 pb-12 md:pt-20 md:pb-16">
+      <section className="bg-linear-to-br from-secondary via-secondary/80 to-accent pt-16 pb-12 md:pt-20 md:pb-16">
         <div className="mx-auto max-w-4xl px-4 md:px-6">
           <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
             Blog de AgendyFix
@@ -103,7 +103,7 @@ export default function BlogPage() {
           {posts.map((post, index) => (
             <div key={post.slug}>
               {index === 3 && (
-                <div className="rounded-2xl bg-gradient-to-br from-secondary via-secondary/80 to-accent border border-accent/40 p-6 md:p-8 text-center mb-5">
+                <div className="rounded-2xl bg-linear-to-br from-secondary via-secondary/80 to-accent border border-accent/40 p-6 md:p-8 text-center mb-5">
                   <h3 className="text-xl md:text-2xl font-extrabold text-white mb-2">
                     Deja de administrar tu academia con papel y WhatsApp
                   </h3>
@@ -164,7 +164,7 @@ export default function BlogPage() {
           ))}
 
           {posts.length > 0 && (
-            <div className="rounded-2xl bg-gradient-to-br from-secondary via-secondary/80 to-accent border border-accent/40 p-6 md:p-8 text-center mt-8">
+            <div className="rounded-2xl bg-linear-to-br from-secondary via-secondary/80 to-accent border border-accent/40 p-6 md:p-8 text-center mt-8">
               <h3 className="text-xl md:text-2xl font-extrabold text-white mb-2">
                 Pon en práctica lo que leíste
               </h3>

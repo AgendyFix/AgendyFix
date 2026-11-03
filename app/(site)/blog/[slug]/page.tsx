@@ -185,7 +185,7 @@ export default async function BlogArticlePage({
           </div>
 
           {/* Inline CTA */}
-          <div className="rounded-2xl bg-gradient-to-br from-secondary via-secondary/80 to-accent border border-accent/40 p-6 text-center my-10">
+          <div className="rounded-2xl bg-linear-to-br from-secondary via-secondary/80 to-accent border border-accent/40 p-6 text-center my-10">
             <h3 className="text-lg md:text-xl font-extrabold text-white mb-2">
               Administra tu academia sin complicaciones
             </h3>
