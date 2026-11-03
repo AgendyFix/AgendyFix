@@ -11,7 +11,7 @@ const WA_MSG =
 export function FinalCtaSection() {
   return (
     <SectionTracker sectionId="final-cta">
-      <div className="relative overflow-hidden bg-gradient-to-br from-secondary via-secondary/95 to-accent/60 py-16 md:py-24">
+      <div className="relative overflow-hidden bg-linear-to-br from-secondary via-secondary/95 to-accent/60 py-16 md:py-24">
         <div className="absolute inset-0 opacity-5">
           <div
             className="absolute inset-0"

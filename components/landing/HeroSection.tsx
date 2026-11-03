@@ -17,7 +17,7 @@ const HIGHLIGHTS = [
 export function HeroSection() {
   return (
     <SectionTracker sectionId="hero">
-      <div className="relative overflow-hidden bg-gradient-to-br from-secondary via-secondary/95 to-accent/60 pt-20 pb-16 md:pt-28 md:pb-24">
+      <div className="relative overflow-hidden bg-linear-to-br from-secondary via-secondary/95 to-accent/60 pt-20 pb-16 md:pt-28 md:pb-24">
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-5">
           <div
