@@ -232,9 +232,50 @@ export function directionsUrl(mapsUrlValue: string | null, address: string): str
   return mapsUrlValue ?? mapsUrl(address);
 }
 
-/** Mapa embebido sin API key, construido con la dirección escrita (los links cortos no se embeben). */
+/** Mapa embebido sin API key, construido con la dirección escrita. Es la búsqueda
+ *  por texto: si la dirección es ambigua, Google muestra varios resultados en vez
+ *  del punto exacto. Solo se usa como respaldo cuando no hay link que resolver. */
 export function mapsEmbedUrl(address: string): string {
   return `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
+}
+
+/** Saca "lat,lng" de una URL larga de Google Maps. Prioriza el pin real del lugar
+ *  (`!3d<lat>!4d<lng>`) sobre el centro del mapa (`@lat,lng`) o un `q=lat,lng`. */
+export function coordsFromMapsUrl(url: string): string | null {
+  const pin = url.match(/!3d(-?\d+(?:\.\d+)?)!4d(-?\d+(?:\.\d+)?)/);
+  if (pin) return `${pin[1]},${pin[2]}`;
+  const center = url.match(/@(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/);
+  if (center) return `${center[1]},${center[2]}`;
+  const query = url.match(/[?&]q=(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/);
+  if (query) return `${query[1]},${query[2]}`;
+  return null;
+}
+
+/**
+ * Link del mapa embebido apuntando al punto exacto que compartió la academia.
+ * Los links cortos (`maps.app.goo.gl`) no se embeben directo: se siguen hasta su
+ * URL larga (un solo 302, leemos `Location` sin bajar el HTML), se extraen las
+ * coordenadas y se embeben por `q=lat,lng` (un único pin). Si no hay link, no
+ * redirige o no trae coordenadas, cae a la búsqueda por la dirección escrita.
+ */
+export async function resolveMapsEmbedUrl(
+  mapsUrl: string | null,
+  address: string | null,
+): Promise<string | null> {
+  if (mapsUrl) {
+    try {
+      const res = await fetch(mapsUrl, {
+        redirect: "manual",
+        next: { revalidate: 86400 },
+      });
+      const resolved = res.headers.get("location") ?? mapsUrl;
+      const coords = coordsFromMapsUrl(resolved);
+      if (coords) return `https://www.google.com/maps?q=${coords}&output=embed`;
+    } catch {
+      // red caída o link inválido: caemos a la dirección de abajo
+    }
+  }
+  return address ? mapsEmbedUrl(address) : null;
 }
 
 /**
