@@ -1,5 +1,5 @@
 import { Instagram, MapPin, Navigation } from "lucide-react";
-import { cleanHandle, directionsUrl, instagramUrl, mapsEmbedUrl } from "@/lib/academies";
+import { cleanHandle, directionsUrl, instagramUrl, resolveMapsEmbedUrl } from "@/lib/academies";
 import { AcademySection } from "./AcademySection";
 import { Reveal } from "./Reveal";
 import { btnGhost, btnPrimary, card } from "./styles";
@@ -10,8 +10,11 @@ type Props = {
   instagramHandle: string | null;
 };
 
-export function AcademyLocation({ address, mapsUrl, instagramHandle }: Props) {
+export async function AcademyLocation({ address, mapsUrl, instagramHandle }: Props) {
   if (!address && !instagramHandle) return null;
+
+  // Server component: resuelve el link compartido a su punto exacto antes de pintar.
+  const mapEmbedSrc = address ? await resolveMapsEmbedUrl(mapsUrl, address) : null;
 
   return (
     <AcademySection
@@ -53,12 +56,13 @@ export function AcademyLocation({ address, mapsUrl, instagramHandle }: Props) {
             </div>
           </div>
 
-          {address && (
+          {mapEmbedSrc && (
             <div className="px-3 pb-3 md:px-4 md:pb-4">
-              {/* Mapa sin API key, construido con la dirección escrita. El filtro
-                  atenúa el blanco del mapa para que no "queme" en el tema oscuro. */}
+              {/* Mapa sin API key: cae en el punto exacto del link compartido (o en
+                  la dirección si no hay link). El filtro atenúa el blanco del mapa
+                  para que no "queme" en el tema oscuro. */}
               <iframe
-                src={mapsEmbedUrl(address)}
+                src={mapEmbedSrc}
                 title={`Mapa de la ubicación: ${address}`}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
