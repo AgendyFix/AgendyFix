@@ -251,28 +251,50 @@ export function coordsFromMapsUrl(url: string): string | null {
   return null;
 }
 
+/** Hosts de Google Maps a los que el servidor puede hacer fetch para resolver un
+ *  link. El API ya restringe `maps_url`, pero este fetch es saliente desde el
+ *  servidor Next: validamos el host también aquí (defensa en profundidad anti-SSRF). */
+function isGoogleMapsHost(url: string): boolean {
+  try {
+    const host = new URL(url).hostname.toLowerCase();
+    return (
+      host === "goo.gl" ||
+      host === "maps.app.goo.gl" ||
+      host === "google.com" ||
+      host === "maps.google.com" ||
+      host.endsWith(".google.com")
+    );
+  } catch {
+    return false;
+  }
+}
+
 /**
  * Link del mapa embebido apuntando al punto exacto que compartió la academia.
  * Los links cortos (`maps.app.goo.gl`) no se embeben directo: se siguen hasta su
  * URL larga (un solo 302, leemos `Location` sin bajar el HTML), se extraen las
  * coordenadas y se embeben por `q=lat,lng` (un único pin). Si no hay link, no
- * redirige o no trae coordenadas, cae a la búsqueda por la dirección escrita.
+ * apunta a Google, no redirige o no trae coordenadas, cae a la búsqueda por la
+ * dirección escrita.
  */
 export async function resolveMapsEmbedUrl(
-  mapsUrl: string | null,
+  sharedMapsUrl: string | null,
   address: string | null,
 ): Promise<string | null> {
-  if (mapsUrl) {
+  if (sharedMapsUrl && isGoogleMapsHost(sharedMapsUrl)) {
     try {
-      const res = await fetch(mapsUrl, {
+      const res = await fetch(sharedMapsUrl, {
         redirect: "manual",
         next: { revalidate: 86400 },
+        // Sin timeout, un goo.gl lento bloquearía el render del RSC (y la
+        // regeneración ISR). El abort cae al fallback por dirección.
+        signal: AbortSignal.timeout(2500),
       });
-      const resolved = res.headers.get("location") ?? mapsUrl;
+      const resolved = res.headers.get("location") ?? sharedMapsUrl;
       const coords = coordsFromMapsUrl(resolved);
       if (coords) return `https://www.google.com/maps?q=${coords}&output=embed`;
     } catch {
-      // red caída o link inválido: caemos a la dirección de abajo
+      // red caída, timeout o link inválido: caemos a la dirección de abajo
     }
   }
   return address ? mapsEmbedUrl(address) : null;
