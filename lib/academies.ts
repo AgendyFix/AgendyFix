@@ -251,6 +251,20 @@ export function coordsFromMapsUrl(url: string): string | null {
   return null;
 }
 
+/** Saca el nombre del lugar de una URL larga de Google Maps (`/maps/place/<NAME>/`).
+ *  Con él, el embed `q=<nombre>` muestra la tarjeta real del negocio (nombre, "Ver
+ *  mapa más grande", "Cómo llegar"), como al compartir, en vez de un pin pelón. */
+export function placeNameFromMapsUrl(url: string): string | null {
+  const m = url.match(/\/maps\/place\/([^/@]+)/);
+  if (!m) return null;
+  try {
+    const name = decodeURIComponent(m[1].replace(/\+/g, " ")).trim();
+    return name || null;
+  } catch {
+    return null;
+  }
+}
+
 /** Hosts de Google Maps a los que el servidor puede hacer fetch para resolver un
  *  link. El API ya restringe `maps_url`, pero este fetch es saliente desde el
  *  servidor Next: validamos el host también aquí (defensa en profundidad anti-SSRF). */
@@ -270,12 +284,15 @@ function isGoogleMapsHost(url: string): boolean {
 }
 
 /**
- * Link del mapa embebido apuntando al punto exacto que compartió la academia.
+ * Link del mapa embebido para el lugar que compartió la academia.
  * Los links cortos (`maps.app.goo.gl`) no se embeben directo: se siguen hasta su
- * URL larga (un solo 302, leemos `Location` sin bajar el HTML), se extraen las
- * coordenadas y se embeben por `q=lat,lng` (un único pin). Si no hay link, no
- * apunta a Google, no redirige o no trae coordenadas, cae a la búsqueda por la
- * dirección escrita.
+ * URL larga (un solo 302, leemos `Location` sin bajar el HTML). De ahí se saca,
+ * en orden de preferencia:
+ *   1. el nombre del lugar → `q=<nombre>` muestra la tarjeta del negocio (como al
+ *      compartir: nombre, "Ver mapa más grande", "Cómo llegar");
+ *   2. si no hay nombre, las coordenadas → `q=lat,lng` (pin exacto sin tarjeta).
+ * Si no hay link, no apunta a Google, no redirige o no trae nada aprovechable,
+ * cae a la búsqueda por la dirección escrita.
  */
 export async function resolveMapsEmbedUrl(
   sharedMapsUrl: string | null,
@@ -291,6 +308,8 @@ export async function resolveMapsEmbedUrl(
         signal: AbortSignal.timeout(2500),
       });
       const resolved = res.headers.get("location") ?? sharedMapsUrl;
+      const name = placeNameFromMapsUrl(resolved);
+      if (name) return `https://www.google.com/maps?q=${encodeURIComponent(name)}&output=embed`;
       const coords = coordsFromMapsUrl(resolved);
       if (coords) return `https://www.google.com/maps?q=${coords}&output=embed`;
     } catch {
